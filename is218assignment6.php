@@ -89,7 +89,7 @@
     echo "System time: ". 
         ($data['ru_stime.tv_sec'] + $data['ru_stime.tv_usec'] / 1000000);
 //////////////////////////////////////////////////////////////////////////////
-    echo 'This demonstrates the magic constants functions';
+    echo 'This demonstrates the magic constants functions<br>';
     //this is relative to the loaded script's path 
     //it may cause problems when running scripts from different directories
     require_once('config/database.php');
@@ -108,6 +108,28 @@
     function my_debug($msg, $line){
         echo "Line $line: $msg\n";
     }
+//////////////////////////////////////////////////////////////////////////////
+    echo 'This demonstrates generating unique ids<br>';
+    //generate unique string 
+    echo md5(time() . mt_rand(1, 1000000));
+    echo '<br><br>';
+
+    //generate unique string 
+    echo uniqid();
+    echo '<br>';
+
+    echo uniqid();
+    echo '<br>';
+
+    //with prefix 
+    echo unqiqid('foo_');
+    echo '<br>';
+    //with more entropy 
+    echo uniqid('', true);
+    echo '<br>';
+    //both 
+    echo uniqid('bar_', true);
+    echo '<br>';
 
 
 ?>
