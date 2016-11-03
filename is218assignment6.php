@@ -189,5 +189,27 @@
 
     //getting it back
     $original = gzuncompress($compressed);
+//////////////////////////////////////////////////////////////////////////////
+    echo 'This demonstrates register shutdown function<br>';
+    //capture the start time 
+    $start_time = microtime(true);
+
+    //do some stuff
+    // ... 
+
+    //display how long the script took
+    echo "execution took: ".(microtime(true) - $start_time)." seconds.<br>";
+    $start_time = microtime(true);
+
+    register_shutdown_function('my_shutdown');
+
+    //do some stuff
+    //... 
+    function my_shutdown(){
+        global $start_time;
+
+        echo "execution took: ".(microtime(true) - $start_time)." seconds.<br>";
+    }
+
 
 ?>
