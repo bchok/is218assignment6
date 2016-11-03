@@ -57,7 +57,7 @@
     echo "Peak: ".memory_get_peak_usage()." bytes \n";
 ///////////////////////////////////////////////////////////////////////////
     echo 'This demonstrates the cpu usage functions<br>';
-    
+    print_r(getrusage());
 
 
 
