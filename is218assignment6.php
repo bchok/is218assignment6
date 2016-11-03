@@ -130,6 +130,39 @@
     //both 
     echo uniqid('bar_', true);
     echo '<br>';
+/////////////////////////////////////////////////////////////////////////////
+    echo 'This demonstrates serialization<br>';
+    //a complex array 
+    $myvar = array (
+        'hello', 42,
+        array(1, 'two'),
+        'apple'
+    );
+
+    //convert to a string 
+    $string = serialize($myvar);
+    echo $string;
+    echo '<br>';
+
+    //you can reproduce the original variable
+    $newvar = unserialize($string);
+
+    print_r($newvar);
+
+    //a complex array
+    $myvar2 = array(
+        'hello', 
+        42,
+        array(1, 'two'),
+        'apple'
+    );
+    //convert to a string 
+    $string = json_encode($myvar2);
+    echo $string;
+    echo '<br>';
+
+    $newvar2 = json_decode($string);
+    print_r($newvar2);
 
 
 ?>
