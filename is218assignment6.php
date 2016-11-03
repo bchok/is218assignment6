@@ -8,6 +8,7 @@
 
     }
     foo('hello', 'world');
+    echo '<br>';
     foo();
 
     //function that can take an arbitrary number of arguments
@@ -21,22 +22,28 @@
         }
     }
     foo2();
+    echo '<br>';
     foo2('hello');
+    echo '<br>';
     foo2('hello', 'world', 'again');
+    echo '<br><br>';
 ///////////////////////////////////////////////////////////////////////
     echo 'this demonstrates the glob function<br>';
     //glob function that can find filesize
     //get all php files 
     $files = glob('*.php');
     print_r($files);
+    echo '<br>';
 
     //get all php and text files 
     $files = glob('*.{php, txt}', GLOB_BRACE);
     print_r($files);
+    echo '<br>';
 
     //files returned with a path 
     $files = glob('../images/a*.jpg');
     print_r($files);
+    echo '<br>';
 
     //files returned with the full path of each file
     $files = glob('../images/a*.jpg');
@@ -44,6 +51,7 @@
     //applies the function to each array element
     $files = array_map('realpath', $files);
     print_r($files);
+    echo '<br><br>';
 ////////////////////////////////////////////////////////////////////////
     echo 'This demonstrates the memory usage functions<br>';
     echo "Initial: ".memory_get_usage()." bytes \n";
@@ -53,8 +61,8 @@
         unset($array[$i]);
     }
 
-    echo "Final: ".memory_get_usage()." bytes \n";
-    echo "Peak: ".memory_get_peak_usage()." bytes \n";
+    echo "Final: ".memory_get_usage()." bytes \n<br>";
+    echo "Peak: ".memory_get_peak_usage()." bytes \n<br><br>";
 ///////////////////////////////////////////////////////////////////////////
     echo 'This demonstrates the cpu usage functions<br>';
     print_r(getrusage());
@@ -63,9 +71,9 @@
     sleep(3);
     $data = getrusage();
     echo "User time: ".
-        ($data['ru_utime.tv_sec'] + $data['ru_utime.tv_usec'] / 1000000);
+        ($data['ru_utime.tv_sec'] + $data['ru_utime.tv_usec'] / 1000000). "<br>";
     echo "System time: ".
-        ($data['ru_stime.tv_sec'] + $data['ru_stime.tv_usec'] / 1000000);
+        ($data['ru_stime.tv_sec'] + $data['ru_stime.tv_usec'] / 1000000). "<br>";
 
 
     //loop 10 million times (busy)
@@ -74,9 +82,9 @@
     }    
     $data = getrusage();
     echo "User time: ".
-        ($data['ru_utime.tv_sec'] + $data['ru_utime.tv_usec'] / 1000000);
+        ($data['ru_utime.tv_sec'] + $data['ru_utime.tv_usec'] / 1000000). "<br>";
     echo "System time: ". 
-        ($data['ru_stime.tv_sec'] + $data['ru_stime.tv_usec'] / 1000000);
+        ($data['ru_stime.tv_sec'] + $data['ru_stime.tv_usec'] / 1000000). "<br>";
     
     $start = microtime(true);
     //keep calling microtime for about 3 seconds
@@ -85,18 +93,18 @@
     }
     $data = getrusage();
     echo "User time: ". 
-        ($data['ru_utime.tv_sec'] + $data['ru_utime.tv_usec'] / 1000000);
+        ($data['ru_utime.tv_sec'] + $data['ru_utime.tv_usec'] / 1000000)."<br>";
     echo "System time: ". 
-        ($data['ru_stime.tv_sec'] + $data['ru_stime.tv_usec'] / 1000000);
+        ($data['ru_stime.tv_sec'] + $data['ru_stime.tv_usec'] / 1000000). "<br><br>";
 //////////////////////////////////////////////////////////////////////////////
     echo 'This demonstrates the magic constants functions<br>';
     //this is relative to the loaded script's path 
     //it may cause problems when running scripts from different directories
-    require_once('config/database.php');
+    //require_once('config/database.php');
 
     //this is always relative to this files path 
     //no matter where it was included from
-    require_once(dirname(__FILE__) . '/config/database.php');
+    //require_once(dirname(__FILE__) . '/config/database.php');
 
     //some code 
     // ... 
@@ -106,7 +114,7 @@
     my_debug("another debug message", __LINE__);
 
     function my_debug($msg, $line){
-        echo "Line $line: $msg\n";
+        echo "Line $line: $msg\n<br><br>";
     }
 //////////////////////////////////////////////////////////////////////////////
     echo 'This demonstrates generating unique ids<br>';
@@ -122,14 +130,14 @@
     echo '<br>';
 
     //with prefix 
-    echo unqiqid('foo_');
+    echo uniqid('foo_');
     echo '<br>';
     //with more entropy 
     echo uniqid('', true);
     echo '<br>';
     //both 
     echo uniqid('bar_', true);
-    echo '<br>';
+    echo '<br><br>';
 /////////////////////////////////////////////////////////////////////////////
     echo 'This demonstrates serialization<br>';
     //a complex array 
@@ -148,6 +156,7 @@
     $newvar = unserialize($string);
 
     print_r($newvar);
+    echo '<br>';
 
     //a complex array
     $myvar2 = array(
@@ -163,6 +172,7 @@
 
     $newvar2 = json_decode($string);
     print_r($newvar2);
+    echo '<br><br>';
 //////////////////////////////////////////////////////////////////////////////
     echo 'This demonstrates compressing strings<br>';
     $string =
@@ -184,8 +194,8 @@
     id euismod urna sodales. ";
 
     $compressed = gzcompress($string);
-    echo "Original size: ". strlen($string)."\n";
-    echo "Compressed size: ". strlen($compressed)."\n";
+    echo "Original size: ". strlen($string)."\n<br>";
+    echo "Compressed size: ". strlen($compressed)."\n<br><br>";
 
     //getting it back
     $original = gzuncompress($compressed);
@@ -208,8 +218,9 @@
     function my_shutdown(){
         global $start_time;
 
-        echo "execution took: ".(microtime(true) - $start_time)." seconds.<br>";
+        echo "execution took: ".(microtime(true) - $start_time)." seconds.<br><br>";
     }
+
 
 
 ?>
