@@ -88,7 +88,26 @@
         ($data['ru_utime.tv_sec'] + $data['ru_utime.tv_usec'] / 1000000);
     echo "System time: ". 
         ($data['ru_stime.tv_sec'] + $data['ru_stime.tv_usec'] / 1000000);
-    
+//////////////////////////////////////////////////////////////////////////////
+    echo 'This demonstrates the magic constants functions';
+    //this is relative to the loaded script's path 
+    //it may cause problems when running scripts from different directories
+    require_once('config/database.php');
+
+    //this is always relative to this files path 
+    //no matter where it was included from
+    require_once(dirname(__FILE__) . '/config/database.php');
+
+    //some code 
+    // ... 
+    my_debug("some debug message", __LINE__);
+    //some more code 
+    //... 
+    my_debug("another debug message", __LINE__);
+
+    function my_debug($msg, $line){
+        echo "Line $line: $msg\n";
+    }
 
 
 ?>
